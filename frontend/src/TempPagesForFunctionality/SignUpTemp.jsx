@@ -1,10 +1,12 @@
-import useState from "react";
+import {useState} from "react";
 import validator from "validator";
+import toast from "react-toastify";
 
 function SignUpTemp() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
+    let isValid = false;
 
     function handleEmailChange(e) {
         setEmail(e.target.value);
@@ -27,7 +29,14 @@ function SignUpTemp() {
     }
     function handleSubmit(e) {
         e.preventDefault();
-        console.log("Signing up with:", email, password);
+        if (isValid) {
+            // Proceed with form submission or further processing
+            console.log("Signing up with:", email, password);
+        } else {
+            toast.error("Please enter a valid email and a strong password.");
+            return;
+        }
+        
     }
     return (
         <div>
