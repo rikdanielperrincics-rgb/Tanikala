@@ -2,9 +2,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 function NavBar() {
   const navigate = useNavigate();
+
+  const [value, setValue] = useState(location.pathname);
+
+  useEffect(() => {
+    setValue(location.pathname);
+  }, [location.pathname]);
   return (
     <div>
       {/* NAVBAR */}
@@ -67,7 +74,11 @@ function NavBar() {
             Resources
           </NavLink>
           <select
-            onChange={(e) => navigate(e.target.value)}
+            value={value}
+            onChange={(e) => {
+              setValue(e.target.value);
+              navigate(e.target.value);
+            }}
             className="px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm text-[#6B4F4F] cursor-pointer"
           >
             <option value="/">Home</option>
