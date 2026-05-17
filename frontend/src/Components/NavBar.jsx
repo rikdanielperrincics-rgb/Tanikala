@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import LogoDark from "../assets/LogoDark.png";
 
 function NavBar() {
   const navigate = useNavigate();
@@ -15,26 +16,51 @@ function NavBar() {
   return (
     <div>
       {/* NAVBAR */}
-      <nav className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-12 md:mb-20 bg-white/30 backdrop-blur-md rounded-2xl px-4 sm:px-6 md:px-8 py-4 shadow-md">
-        <div className="text-2xl font-bold text-[#6B4F4F] text-center md:text-left">
-          <NavLink
-            to="/"
-            className="hover:text-[#6B4F4F]/80 transition-colors duration-300"
-          >
-            Tanikala
-          </NavLink>
+      <nav className="fixed top-0 left-0 w-full z-50 flex flex-col md:flex-row md:items-center md:justify-between gap-4 bg-white backdrop-blur-md px-4 sm:px-6 md:px-8 py-4 shadow-md">
+
+      <div className="flex items-center gap-3"> 
+          
+          {/* Logo */}
+          <img src={LogoDark} className="w-[3rem] h-auto" alt="Tanikala Logo" />
+
+          {/* Text */}
+          <div className="text-2xl font-bold text-[#6B4F4F] text-center md:text-left">
+            <NavLink
+              to="/"
+              className="hover:text-[#6B4F4F]/80 transition-colors duration-300"
+            >
+              Tanikala
+            </NavLink>
+          </div>
+
         </div>
 
         <div className="flex flex-wrap items-center justify-center md:justify-end gap-2 sm:gap-4 text-[#6B4F4F]/80 font-medium">
           <NavLink
-            to="/signup"
+            to="/"
             className={({ isActive }) =>
               `
               px-4 py-2 rounded-full transition-all duration-300
               ${
                 isActive
-                  ? "bg-white/20 backdrop-blur-md text-[#6B4F4F] shadow-sm"
-                  : "hover:bg-white/10 hover:backdrop-blur-sm hover:text-[#6B4F4F]"
+                  ? "bg-[#E9BFD7] backdrop-blur-md text-white shadow-sm"
+                  : "hover:bg-[#E9BFD7] hover:backdrop-blur-sm hover:text-white"
+              }
+              `
+            }
+          >
+            Home
+          </NavLink>
+
+          <NavLink
+            to="/Community"
+            className={({ isActive }) =>
+              `
+              px-4 py-2 rounded-full transition-all duration-300
+              ${
+                isActive
+                  ? "bg-[#E2BADB] backdrop-blur-md text-white shadow-sm"
+                  : "hover:bg-[#E2BADB] hover:backdrop-blur-sm hover:text-white"
               }
               `
             }
@@ -43,37 +69,71 @@ function NavBar() {
           </NavLink>
 
           <NavLink
-            to="/safespaces"
+            to="/Resources"
             className={({ isActive }) =>
               `
               px-4 py-2 rounded-full transition-all duration-300
               ${
                 isActive
-                  ? "bg-white/20 backdrop-blur-md text-[#6B4F4F] shadow-sm"
-                  : "hover:bg-white/10 hover:backdrop-blur-sm hover:text-[#6B4F4F]"
-              }
-              `
-            }
-          >
-            Safe Spaces
-          </NavLink>
-
-          <NavLink
-            to="/resources"
-            className={({ isActive }) =>
-              `
-              px-4 py-2 rounded-full transition-all duration-300
-              ${
-                isActive
-                  ? "bg-white/20 backdrop-blur-md text-[#6B4F4F] shadow-sm"
-                  : "hover:bg-white/10 hover:backdrop-blur-sm hover:text-[#6B4F4F]"
+                  ? "bg-[#DDB7E1] backdrop-blur-md text-white shadow-sm"
+                  : "hover:bg-[#DDB7E1] hover:backdrop-blur-sm hover:text-white"
               }
               `
             }
           >
             Resources
           </NavLink>
-          <select
+
+          <NavLink
+            to="/Contacts"
+            className={({ isActive }) =>
+              `
+              px-4 py-2 rounded-full transition-all duration-300
+              ${
+                isActive
+                  ? "bg-[#D3B3E8] backdrop-blur-md text-white shadow-sm"
+                  : "hover:bg-[#D3B3E8] hover:backdrop-blur-sm hover:text-white"
+              }
+              `
+            }
+          >
+            Contacts
+          </NavLink>
+
+                    <NavLink
+            to="/About"
+            className={({ isActive }) =>
+              `
+              px-4 py-2 rounded-full transition-all duration-300
+              ${
+                isActive
+                  ? "bg-[#C7B3EE] backdrop-blur-md text-white shadow-sm"
+                  : "hover:bg-[#C7B3EE] hover:backdrop-blur-sm hover:text-white"
+              }
+              `
+            }
+          >
+            About
+          </NavLink>
+
+          <NavLink
+            to="/Profile"
+            className={({ isActive }) =>
+              `
+              px-4 py-2 rounded-full transition-all duration-300
+              ${
+                isActive
+                  ? "bg-[#B9B3F4] backdrop-blur-md text-[white] shadow-sm"
+                  : "hover:bg-[#B9B3F4] hover:backdrop-blur-sm hover:text-white"
+              }
+              `
+            }
+          >
+            Account
+          </NavLink>
+
+
+          {/* <select
             value={value}
             onChange={(e) => {
               setValue(e.target.value);
@@ -84,7 +144,7 @@ function NavBar() {
             <option value="/">Home</option>
             <option value="/SignIn">Sign In</option>
             <option value="/Profile">Profile (To be Deleted)</option>
-          </select>
+          </select> */}
         </div>
       </nav>
     </div>

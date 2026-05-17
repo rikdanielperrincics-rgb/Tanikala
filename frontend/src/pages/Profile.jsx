@@ -2,7 +2,8 @@ import NavBar from "../Components/NavBar";
 
 function Profile() {
   return (
-    <div className="min-h-screen w-full bg-[linear-gradient(90deg,_#e9bfd6_0%,_#d7b3e6_50%,_#b8b3f4_100%)] px-4 sm:px-6 md:px-12 py-6 md:py-8">
+
+    <div className="min-h-screen mt-[7vh] w-full bg-[linear-gradient(90deg,_#e9bfd6_0%,_#d7b3e6_50%,_#b8b3f4_100%)] px-4 sm:px-6 md:px-12 py-6 md:py-8">
       <NavBar />
       <main className=" max-w-7xl mx-auto flex flex-col-reverse lg:flex-row items-center justify-between gap-12">
         <div className="max-w-xl text-center lg:text-left">
@@ -25,7 +26,7 @@ function Profile() {
       </main>
 
       <div className="createPost">
-        <div className="mt-16 max-w-7xl mx-auto bg-white/30 backdrop-blur-md rounded-2xl p-6 md:p-12 shadow-lg">
+        <div className="mt-20 max-w-7xl mx-auto bg-white/30 backdrop-blur-md rounded-2xl p-6 md:p-12 shadow-lg">
           <h2 className="text-2xl font-bold text-[#4B3573] mb-4">
             Create a New Post
           </h2>

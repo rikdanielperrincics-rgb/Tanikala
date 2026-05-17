@@ -64,11 +64,11 @@ function SignIn() {
       <div className="flex min-h-screen w-full">
         {/* LEFT */}
         <div className="hidden md:flex flex-1 flex-col justify-center items-center px-[52px] py-[60px] gap-4 bg-[linear-gradient(160deg,_#c4b5f0_0%,_#bbaee8_15%,_#c8b8f0_35%,_#d8c4f4_55%,_#e4cef6_75%,_#eedaf8_90%,_#f5e4fa_100%)]">
-          <h1 className="text-[80px] font-black text-[#2e1065] tracking-[-2px] leading-none">
+          <h1 className="text-[85px] font-black text-[#2e1065] tracking-[-2px] leading-none">
             Tanikala
           </h1>
 
-          <p className="text-[20px] font-semibold text-[#3b1a7a] leading-[1.65] max-w-[240px] text-center">
+          <p className="text-[20px] font-semibold text-[#3b1a7a] leading-[1.65] max-w-[300px] text-center">
             Support that meets you exactly where you are.
           </p>
         </div>
@@ -76,13 +76,13 @@ function SignIn() {
         {/* RIGHT */}
         <div className="flex-[1.1] bg-white flex flex-col items-center justify-center px-8 sm:px-12 md:px-16 py-11">
 
-          <img src={LogoLight} className="w-[8rem] h-auto" alt="Tanikala Logo" />
-          <h2 className="text-[50px] font-extrabold text-[#7d7b9b] tracking-[-0.5px] mt-2 mb-7">
+          <img src={LogoLight} className="w-[10rem] h-auto" alt="Tanikala Logo" />
+          <h2 className="text-[65px] font-extrabold text-[#7d7b9b] tracking-[-0.5px] mt-2 mb-7">
             Log In
           </h2>
 
           <form className="w-full" onSubmit={handleSubmit}>
-            <label className="block text-[14px] font-extrabold text-[#7d7b9b] mb-2 text-left">
+            <label className="block text-[20px] font-extrabold text-[#7d7b9b] mb-2 text-left">
               Email
             </label>
 
@@ -93,11 +93,11 @@ function SignIn() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="flex-1 border-none outline-none px-5 py-[13px] text-[14px] font-medium text-[#333] bg-transparent placeholder:text-[#ccc]"
+                className="flex-1 border-none outline-none px-5 py-[13px] text-[20px] font-medium text-[#333] bg-transparent placeholder:text-[#ccc]"
               />
             </div>
 
-            <label className="block text-[14px] font-extrabold text-[#7d7b9b] mb-2 text-left">
+            <label className="block text-[20px] font-extrabold text-[#7d7b9b] mb-2 text-left">
               Password
             </label>
 
@@ -108,7 +108,7 @@ function SignIn() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="flex-1 border-none outline-none px-5 py-[13px] text-[14px] font-medium text-[#333] bg-transparent placeholder:text-[#ccc]"
+                className="flex-1 border-none outline-none px-5 py-[13px] text-[20px] font-medium text-[#333] bg-transparent placeholder:text-[#ccc]"
               />
 
               <button
@@ -122,7 +122,7 @@ function SignIn() {
 
             <button
               type="submit"
-              className="w-full py-[14px] rounded-full border-none bg-[#7d7b9b] text-white text-[16px] font-black cursor-pointer mb-[18px] tracking-[0.3px] hover:bg-[#5a5a90] transition-colors"
+              className="w-full py-[14px] rounded-full border-none bg-[#7d7b9b] text-white text-[22px] font-black cursor-pointer mb-[18px] tracking-[0.3px] hover:bg-[#5a5a90] transition-colors"
             >
               Log in
             </button>
@@ -136,7 +136,7 @@ function SignIn() {
           </div>
 
           {/* GOOGLE */}
-          <button className="w-full py-[13px] rounded-full border-[1.5px] border-[#d8d8d8] bg-white text-[14px] font-bold text-[#444] cursor-pointer flex items-center justify-center gap-[10px] mb-4 hover:bg-[#fafafa] hover:border-[#bbb] transition-all">
+          <button className="w-full py-[13px] rounded-full border-[1.5px] border-[#d8d8d8] bg-white text-[20px] font-bold text-[#444] cursor-pointer flex items-center justify-center gap-[10px] mb-4 hover:bg-[#fafafa] hover:border-[#bbb] transition-all">
             <GoogleIcon />
             Log in with Google
           </button>
@@ -150,14 +150,14 @@ function SignIn() {
           <div className="flex gap-3 w-full">
             <Link
               to="/ForgotPassword"
-              className="flex-1 py-[13px] rounded-full border-[1.5px] border-[#d8d8d8] bg-white text-[13px] font-bold text-[#555] text-center hover:border-[#a78bda] hover:text-[#7c4dba] transition-all"
+              className="flex-1 py-[13px] rounded-full border-[1.5px] border-[#d8d8d8] bg-white text-[20px] font-bold text-[#555] text-center hover:border-[#a78bda] hover:text-[#7c4dba] transition-all"
             >
               Forgot Password
             </Link>
 
             <Link
               to="/SignUp"
-              className="flex-1 py-[13px] rounded-full border-[1.5px] border-[#d8d8d8] bg-white text-[13px] font-bold text-[#555] text-center hover:border-[#a78bda] hover:text-[#7c4dba] transition-all"
+              className="flex-1 py-[13px] rounded-full border-[1.5px] border-[#d8d8d8] bg-white text-[20px] font-bold text-[#555] text-center hover:border-[#a78bda] hover:text-[#7c4dba] transition-all"
             >
               Sign Up
             </Link>
