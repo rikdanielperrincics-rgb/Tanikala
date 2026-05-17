@@ -189,7 +189,7 @@ function SignUp() {
                     <img 
                         src={LogoDark} 
                         alt="Sign up background" 
-                        className="absolute top-0 left-0 w-full h-full  z-0 opacity-15" 
+                        className="absolute top-0 left-0 w-full h-full  z-0 opacity-10" 
                     />
 
                     <div className="relative z-20 flex flex-col items-center gap-4">
