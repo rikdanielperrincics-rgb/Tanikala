@@ -4,7 +4,7 @@ import { ToastContainer, Bounce } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import './index.css'
 import App from './App.jsx'
-import AppRoute from './AppRoute.jsx'
+import AppRoute from './routes/AppRoute.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -22,7 +22,7 @@ createRoot(document.getElementById('root')).render(
         theme="light"
         transition={Bounce}
       />  
-    <AppRoute />
+      <AppRoute />
     </div>
   </StrictMode>,
 )
