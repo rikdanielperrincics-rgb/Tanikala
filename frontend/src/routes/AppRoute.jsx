@@ -4,6 +4,7 @@ import Login from '../pages/SignIn'
 import App from '../App'
 import SignIn from '../pages/SignIn'
 import SignUpTemp from '../TempPagesForFunctionality/SignUpTemp'
+import LoginTemp from '../TempPagesForFunctionality/LoginTemp'
 
 const AppRoute = () => {
     return (
@@ -15,6 +16,7 @@ const AppRoute = () => {
                 <Route path="/Login" element={<Login />} />
                 <Route path="*" element={<div>404 Not Found</div>} />
                 <Route path="/SignUpTemp" element={<SignUpTemp />} />
+                <Route path="/LoginTemp" element={<LoginTemp />} />
             </Routes>
         </BrowserRouter>
     )

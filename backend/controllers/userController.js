@@ -20,6 +20,24 @@ export const create = async (req, res) => {
     }
 };
 
+export const login = async (req, res) => {
+    try {
+        const { name, password } = req.body;
+        const user = await User.findOne({ name });
+        const userMail = await User.findOne({ email: name });
+        if (!user && !userMail) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+        const actualUser = user || userMail;
+        if (actualUser.password !== password) {
+            return res.status(401).json({ error: 'Invalid password' });
+        }
+        res.status(200).json({ message: 'Login successful', user: actualUser });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+}
+
 export const getAllUsers = async (req, res) => {
     try {
         const userData = await User.find();
