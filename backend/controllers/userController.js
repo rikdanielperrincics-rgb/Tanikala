@@ -2,19 +2,23 @@ import User from "../models/userModel.js";
 
 export const create = async (req, res) => {
     try {
-        const newUser = new User(req.body);
         const { email } = req.body;
         const userExists = await User.findOne({ email });
         if (userExists) {
-            return res.status(400).json({ error: 'User with this email already exists' });
+            return res.status(400).json({
+                error: "User with this email already exists"
+            });
         }
-        const savedData = await newUser.save();
-        res.status(201).json(newUser);
+        const newUser = new User(req.body);
+        const savedUser = await newUser.save();
+        res.status(201).json(savedUser);
+
+    } catch (err) {
+        res.status(500).json({
+            error: err.message
+        });
     }
-    catch (err) {
-        res.status(500).json({ error: err.message });
-    }
-}
+};
 
 export const getAllUsers = async (req, res) => {
     try {
