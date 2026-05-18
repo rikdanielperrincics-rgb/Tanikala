@@ -55,11 +55,11 @@ function Community() {
         <div className="hidden md:block md:col-span-2 border-l border-gray-200 bg-white relative">
 
           {/* ADD POST BUTTON */}
-          <button className="fixed bottom-6 right-6 bg-[#766a94] hover:bg-[#61567d] text-white font-bold px-5 py-3 rounded-full shadow-lg flex items-center gap-1.5 transition-all hover:scale-[1.02]">
-            <svg className="w-5 h-5 stroke-white" fill="none" strokeWidth="3" viewBox="0 0 24 24">
+          <button className="fixed bottom-12 right-12 bg-[#766a94] hover:bg-[#61567d] text-white font-bold px-5 py-3 rounded-full shadow-lg flex items-center gap-1.5 transition-all hover:scale-[1.02]">
+            <svg className="w-7 h-7 stroke-white" fill="none" strokeWidth="3" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
             </svg>
-            <span className="text-20px tracking-wide">Add Post</span>
+            <span className="text-[1.5rem] tracking-wide">Add Post</span>
           </button>
         </div>
 
