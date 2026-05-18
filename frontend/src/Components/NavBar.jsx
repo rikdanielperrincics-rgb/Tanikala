@@ -24,10 +24,10 @@ function NavBar() {
           <img src={LogoDark} className="w-[4rem] h-auto" alt="Tanikala Logo" />
 
           {/* Text */}
-          <div className="text-[2.4rem] font-bold text-[#6B4F4F] text-center md:text-left">
+          <div className="text-[2.4rem] font-bold text-[#4B3573] text-center md:text-left">
             <NavLink
               to="/"
-              className="hover:text-[#6B4F4F]/80 transition-colors duration-300"
+              className="hover:text-[#4B3573]/80 transition-colors duration-300"
             >
               Tanikala
             </NavLink>
@@ -35,7 +35,7 @@ function NavBar() {
 
         </div>
 
-        <div className="flex flex-wrap items-center justify-center md:justify-end gap-2 sm:gap-4 text-[#6B4F4F]/80 font-medium">
+        <div className="flex flex-wrap items-center justify-center md:justify-end gap-2 sm:gap-4 text-[#4B3573]/80 font-medium">
           <NavLink
             to="/"
             className={({ isActive }) =>
