@@ -68,7 +68,7 @@ function SignIn() {
             Tanikala
           </h1>
 
-          <p className="text-[20px] font-semibold text-[#3b1a7a] leading-[1.65] max-w-[300px] text-center">
+          <p className="text-[23px] font-semibold text-[#3b1a7a] leading-[1.65] max-w-[300px] text-center">
             Support that meets you exactly where you are.
           </p>
         </div>
@@ -81,8 +81,8 @@ function SignIn() {
             Log In
           </h2>
 
-          <form className="w-full" onSubmit={handleSubmit}>
-            <label className="block text-[20px] font-extrabold text-[#7d7b9b] mb-2 text-left">
+          <form className="w-full max-w-[80vh]" onSubmit={handleSubmit}>
+            <label className="block text-[17px] font-extrabold text-[#7d7b9b] mb-2 text-left">
               Email
             </label>
 
@@ -93,11 +93,11 @@ function SignIn() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="flex-1 border-none outline-none px-5 py-[13px] text-[20px] font-medium text-[#333] bg-transparent placeholder:text-[#ccc]"
+                className="flex-1 border-none outline-none px-5 py-[13px] text-[17px] font-medium text-[#333] bg-transparent placeholder:text-[#ccc]"
               />
             </div>
 
-            <label className="block text-[20px] font-extrabold text-[#7d7b9b] mb-2 text-left">
+            <label className="block text-[17px] font-extrabold text-[#7d7b9b] mb-2 text-left">
               Password
             </label>
 
@@ -108,7 +108,7 @@ function SignIn() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="flex-1 border-none outline-none px-5 py-[13px] text-[20px] font-medium text-[#333] bg-transparent placeholder:text-[#ccc]"
+                className="flex-1 border-none outline-none px-5 py-[13px] text-[17px] font-medium text-[#333] bg-transparent placeholder:text-[#ccc]"
               />
 
               <button
@@ -122,42 +122,42 @@ function SignIn() {
 
             <button
               type="submit"
-              className="w-full py-[14px] rounded-full border-none bg-[#7d7b9b] text-white text-[22px] font-black cursor-pointer mb-[18px] tracking-[0.3px] hover:bg-[#5a5a90] transition-colors"
+              className="w-full py-[14px] mt-[.5rem] rounded-full border-none bg-[#7d7b9b] text-white text-[22px] font-black cursor-pointer mb-[18px] tracking-[0.3px] hover:bg-[#5a5a90] transition-colors"
             >
               Log in
             </button>
           </form>
 
           {/* OR */}
-          <div className="flex items-center gap-3 w-full mb-4">
+          <div className="flex items-center gap-3 w-full mb-4 max-w-[80vh]">
             <span className="flex-1 h-[1px] bg-[#e4e4e4]" />
             <span className="text-[13px] text-[#bbb] font-semibold">or</span>
             <span className="flex-1 h-[1px] bg-[#e4e4e4]" />
           </div>
 
           {/* GOOGLE */}
-          <button className="w-full py-[13px] rounded-full border-[1.5px] border-[#d8d8d8] bg-white text-[20px] font-bold text-[#444] cursor-pointer flex items-center justify-center gap-[10px] mb-4 hover:bg-[#fafafa] hover:border-[#bbb] transition-all">
+          <button className="w-full py-[13px] rounded-full border-[1.5px] border-[#d8d8d8] bg-white text-[17px] font-bold text-[#444] cursor-pointer flex items-center justify-center gap-[10px] mb-4 hover:bg-[#fafafa] hover:border-[#bbb] transition-all max-w-[80vh]">
             <GoogleIcon />
             Log in with Google
           </button>
 
           {/* LINE */}
-          <div className="flex items-center gap-3 w-full mb-4">
+          <div className="flex items-center gap-3 w-full mb-4 max-w-[80vh]">
             <span className="flex-1 h-[1px] bg-[#e4e4e4]" />
           </div>
 
           {/* BOTTOM */}
-          <div className="flex gap-3 w-full">
+          <div className="flex gap-3 w-full max-w-[80vh]">
             <Link
               to="/ForgotPassword"
-              className="flex-1 py-[13px] rounded-full border-[1.5px] border-[#d8d8d8] bg-white text-[20px] font-bold text-[#555] text-center hover:border-[#a78bda] hover:text-[#7c4dba] transition-all"
+              className="flex-1 py-[13px] rounded-full border-[1.5px] border-[#d8d8d8] bg-white text-[17px] font-bold text-[#555] text-center hover:border-[#a78bda] hover:text-[#7c4dba] transition-all"
             >
               Forgot Password
             </Link>
 
             <Link
               to="/SignUp"
-              className="flex-1 py-[13px] rounded-full border-[1.5px] border-[#d8d8d8] bg-white text-[20px] font-bold text-[#555] text-center hover:border-[#a78bda] hover:text-[#7c4dba] transition-all"
+              className="flex-1 py-[13px] rounded-full border-[1.5px] border-[#d8d8d8] bg-white text-[17px] font-bold text-[#555] text-center hover:border-[#a78bda] hover:text-[#7c4dba] transition-all"
             >
               Sign Up
             </Link>

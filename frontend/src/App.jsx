@@ -5,7 +5,7 @@ import NavBar from './Components/NavBar';
 
 export default function App() {
   return (
-    <div className="mt-[7vh] min-h-screen w-full bg-[linear-gradient(90deg,_#e9bfd6_0%,_#d7b3e6_50%,_#b8b3f4_100%)] px-4 sm:px-6 md:px-12 py-6 md:py-8">
+    <div className="mt-[9vh] min-h-screen w-full bg-[linear-gradient(90deg,_#e9bfd6_0%,_#d7b3e6_50%,_#b8b3f4_100%)] px-4 sm:px-6 md:px-12 py-6 md:py-8">
 
       <NavBar />
 

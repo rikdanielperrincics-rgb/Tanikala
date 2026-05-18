@@ -36,7 +36,7 @@ export default function About() {
   }, []);
 
   return (
-    <div className="min-h-screen mt-[7vh] w-full bg-[linear-gradient(90deg,_#e9bfd6_0%,_#d7b3e6_50%,_#b8b3f4_100%)]">
+    <div className="min-h-screen mt-[9vh] w-full bg-[linear-gradient(90deg,_#e9bfd6_0%,_#d7b3e6_50%,_#b8b3f4_100%)]">
       <NavBar />
 
       <section

@@ -21,10 +21,10 @@ function NavBar() {
       <div className="flex items-center gap-3"> 
           
           {/* Logo */}
-          <img src={LogoDark} className="w-[3rem] h-auto" alt="Tanikala Logo" />
+          <img src={LogoDark} className="w-[4rem] h-auto" alt="Tanikala Logo" />
 
           {/* Text */}
-          <div className="text-2xl font-bold text-[#6B4F4F] text-center md:text-left">
+          <div className="text-[2.4rem] font-bold text-[#6B4F4F] text-center md:text-left">
             <NavLink
               to="/"
               className="hover:text-[#6B4F4F]/80 transition-colors duration-300"
@@ -43,8 +43,8 @@ function NavBar() {
               px-4 py-2 rounded-full transition-all duration-300
               ${
                 isActive
-                  ? "bg-[#E9BFD7] backdrop-blur-md text-white shadow-sm"
-                  : "hover:bg-[#E9BFD7] hover:backdrop-blur-sm hover:text-white"
+                  ? "text-[1.2rem] bg-[#E9BFD7] backdrop-blur-md text-white shadow-sm"
+                  : "text-[1.2rem] hover:bg-[#E9BFD7] hover:backdrop-blur-sm hover:text-white"
               }
               `
             }
@@ -59,8 +59,8 @@ function NavBar() {
               px-4 py-2 rounded-full transition-all duration-300
               ${
                 isActive
-                  ? "bg-[#E2BADB] backdrop-blur-md text-white shadow-sm"
-                  : "hover:bg-[#E2BADB] hover:backdrop-blur-sm hover:text-white"
+                  ? "text-[1.2rem] bg-[#E2BADB] backdrop-blur-md text-white shadow-sm"
+                  : "text-[1.2rem] hover:bg-[#E2BADB] hover:backdrop-blur-sm hover:text-white"
               }
               `
             }
@@ -75,8 +75,8 @@ function NavBar() {
               px-4 py-2 rounded-full transition-all duration-300
               ${
                 isActive
-                  ? "bg-[#DDB7E1] backdrop-blur-md text-white shadow-sm"
-                  : "hover:bg-[#DDB7E1] hover:backdrop-blur-sm hover:text-white"
+                  ? "text-[1.2rem] bg-[#DDB7E1] backdrop-blur-md text-white shadow-sm"
+                  : "text-[1.2rem] hover:bg-[#DDB7E1] hover:backdrop-blur-sm hover:text-white"
               }
               `
             }
@@ -91,8 +91,8 @@ function NavBar() {
               px-4 py-2 rounded-full transition-all duration-300
               ${
                 isActive
-                  ? "bg-[#D3B3E8] backdrop-blur-md text-white shadow-sm"
-                  : "hover:bg-[#D3B3E8] hover:backdrop-blur-sm hover:text-white"
+                  ? "text-[1.2rem] bg-[#D3B3E8] backdrop-blur-md text-white shadow-sm"
+                  : "text-[1.2rem] hover:bg-[#D3B3E8] hover:backdrop-blur-sm hover:text-white"
               }
               `
             }
@@ -107,8 +107,8 @@ function NavBar() {
               px-4 py-2 rounded-full transition-all duration-300
               ${
                 isActive
-                  ? "bg-[#C7B3EE] backdrop-blur-md text-white shadow-sm"
-                  : "hover:bg-[#C7B3EE] hover:backdrop-blur-sm hover:text-white"
+                  ? "text-[1.2rem] bg-[#C7B3EE] backdrop-blur-md text-white shadow-sm"
+                  : "text-[1.2rem] hover:bg-[#C7B3EE] hover:backdrop-blur-sm hover:text-white"
               }
               `
             }
@@ -123,8 +123,8 @@ function NavBar() {
               px-4 py-2 rounded-full transition-all duration-300
               ${
                 isActive
-                  ? "bg-[#B9B3F4] backdrop-blur-md text-[white] shadow-sm"
-                  : "hover:bg-[#B9B3F4] hover:backdrop-blur-sm hover:text-white"
+                  ? "text-[1.2rem] bg-[#B9B3F4] backdrop-blur-md text-[white] shadow-sm"
+                  : "text-[1.2rem] hover:bg-[#B9B3F4] hover:backdrop-blur-sm hover:text-white"
               }
               `
             }
