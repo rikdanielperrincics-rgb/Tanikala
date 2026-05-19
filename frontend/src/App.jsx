@@ -2,6 +2,7 @@ import './index.css';
 import React from "react";
 import { Link } from "react-router-dom";
 import NavBar from './Components/NavBar';
+import RedirectSmall from './Components/RedirectSmall';
 
 export default function App() {
   return (
@@ -25,16 +26,10 @@ export default function App() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-
-            <button className="bg-[#7B8DEB] text-white px-8 py-4 rounded-3xl font-semibold shadow-lg transition hover:scale-105">
-              Join our Community
-            </button>
-
-            <button className="bg-[#F5C0CB] text-[#7B8DEB] px-8 py-4 rounded-3xl font-semibold shadow-lg transition hover:scale-105">
-              Explore the Forum
-            </button>
-
+            <RedirectSmall text="Join our Community" color="bg-[#7B8DEB]" textColor="text-white" />
+            <RedirectSmall text="Explore the Forum" color="bg-[#F5C0CB]" textColor="text-[#7B8DEB]" />
           </div>
+
         </div>
 
         {/* IMAGE */}
