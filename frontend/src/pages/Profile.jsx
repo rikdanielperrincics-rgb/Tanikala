@@ -5,12 +5,10 @@ import EditUser from "./EditUser";
 function Profile() {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
-  // Placeholder userId - in a real app, this would come from auth context/state
   const userId = "placeholder-id";
 
   const handleUpdate = () => {
     console.log("Profile updated!");
-    // You could trigger a re-fetch of user data here
   };
 
   return (
