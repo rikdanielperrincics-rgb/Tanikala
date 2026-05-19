@@ -99,7 +99,7 @@ function Contacts() {
             If you or someone is in immediate danger, call{" "}
             <a href="tel:911" className="text-[#DD6CB1] underline underline-offset-2 font-black">911</a>{" "}
             or the NCMH hotline{" "}
-            <a href="tel:1553" className="text-[#DD6CB1] underline underline-offset-2 font-black">988</a>{" "}
+            <a href="tel:1553" className="text-[#DD6CB1] underline underline-offset-2 font-black">1553</a>{" "}
             — free, 24/7.
           </p>
         </div>
@@ -137,7 +137,7 @@ function Contacts() {
             <p className="text-sm font-semibold text-[#584A6A]">
               Unsure where to start?{" "}
               <a href="tel:1553" className="text-[#512B7C] underline underline-offset-2 font-black">
-                Call 988
+                Call 1553
               </a>{" "}
               — the NCMH hotline will guide you.
             </p>
