@@ -1,43 +1,10 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import LogoLight from "../assets/LogoLight.png";
 import GoogleButton from "../components/GoogleButton";
-
-const EyeIcon = ({ show }) => (
-  <svg
-    width="20"
-    height="20"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="#bbb"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    {show ? (
-      <>
-        <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94" />
-        <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19" />
-        <line x1="1" y1="1" x2="23" y2="23" />
-      </>
-    ) : (
-      <>
-        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-        <circle cx="12" cy="12" r="3" />
-      </>
-    )}
-  </svg>
-);
+import LoginForm from "../components/LoginForm";
+import Redirect from "../Components/Redirect";
 
 function SignIn() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Signing in with:", email, password);
-  };
 
   return (
     <div className="w-screen overflow-x-hidden">
@@ -61,52 +28,7 @@ function SignIn() {
             Log In
           </h2>
 
-          <form className="w-full max-w-[80vh]" onSubmit={handleSubmit}>
-            <label className="block text-[17px] font-extrabold text-[#7d7b9b] mb-2 text-left">
-              Email
-            </label>
-
-            <div className="flex items-center border-[1.5px] border-[#d8d8d8] rounded-full mb-[18px] overflow-hidden focus-within:border-[#a78bda] transition-colors">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                className="flex-1 border-none outline-none px-5 py-[13px] text-[17px] font-medium text-[#333] bg-transparent placeholder:text-[#ccc]"
-              />
-            </div>
-
-            <label className="block text-[17px] font-extrabold text-[#7d7b9b] mb-2 text-left">
-              Password
-            </label>
-
-            <div className="flex items-center border-[1.5px] border-[#d8d8d8] rounded-full mb-[18px] overflow-hidden focus-within:border-[#a78bda] transition-colors">
-              <input
-                type={showPassword ? "text" : "password"}
-                placeholder="Enter your password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                className="flex-1 border-none outline-none px-5 py-[13px] text-[17px] font-medium text-[#333] bg-transparent placeholder:text-[#ccc]"
-              />
-
-              <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className="bg-none border-none cursor-pointer px-4 flex items-center"
-              >
-                <EyeIcon show={showPassword} />
-              </button>
-            </div>
-
-            <button
-              type="submit"
-              className="w-full py-[14px] mt-[.5rem] rounded-full border-none bg-[#7d7b9b] text-white text-[22px] font-black cursor-pointer mb-[18px] tracking-[0.3px] hover:bg-[#5a5a90] transition-colors"
-            >
-              Log in
-            </button>
-          </form>
+          <LoginForm />
 
           {/* OR */}
           <div className="flex items-center gap-3 w-full mb-4 max-w-[80vh]">
@@ -124,21 +46,7 @@ function SignIn() {
           </div>
 
           {/* BOTTOM */}
-          <div className="flex gap-3 w-full max-w-[80vh]">
-            <Link
-              to="/ForgotPassword"
-              className="flex-1 py-[13px] rounded-full border-[1.5px] border-[#d8d8d8] bg-white text-[17px] font-bold text-[#555] text-center hover:border-[#a78bda] hover:text-[#7c4dba] transition-all"
-            >
-              Forgot Password
-            </Link>
-
-            <Link
-              to="/SignUp"
-              className="flex-1 py-[13px] rounded-full border-[1.5px] border-[#d8d8d8] bg-white text-[17px] font-bold text-[#555] text-center hover:border-[#a78bda] hover:text-[#7c4dba] transition-all"
-            >
-              Sign Up
-            </Link>
-          </div>
+          <Redirect text="Don't have an account? Sign Up" to="/signup" />
         </div>
       </div>
     </div>

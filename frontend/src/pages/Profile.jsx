@@ -1,8 +1,17 @@
+import React, { useState } from "react";
 import NavBar from "../Components/NavBar";
+import EditUser from "./EditUser";
 
 function Profile() {
-  return (
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
+  const userId = "placeholder-id";
+
+  const handleUpdate = () => {
+    console.log("Profile updated!");
+  };
+
+  return (
     <div className="min-h-screen mt-[9vh] w-full bg-[linear-gradient(90deg,_#e9bfd6_0%,_#d7b3e6_50%,_#b8b3f4_100%)] px-4 sm:px-6 md:px-12 py-6 md:py-8">
       <NavBar />
       <main className=" max-w-7xl mx-auto flex flex-col-reverse lg:flex-row items-center justify-between gap-12">
@@ -15,6 +24,14 @@ function Profile() {
             information. You can add details about yourself, your interests, and
             anything you'd like to share with the community.
           </p>
+          <div className="flex justify-center lg:justify-start">
+            <button
+              onClick={() => setIsEditModalOpen(true)}
+              className="bg-[#7B8DEB] text-white px-8 py-3 rounded-full font-semibold shadow-lg transition hover:scale-105 active:scale-95"
+            >
+              Edit Profile
+            </button>
+          </div>
         </div>
         <div className="relative w-full max-w-[300px] sm:max-w-[400px] lg:max-w-[500px] aspect-square rounded-[40px] md:rounded-[60px] overflow-hidden shadow-2xl">
           <img
@@ -24,6 +41,14 @@ function Profile() {
           />
         </div>
       </main>
+
+      {isEditModalOpen && (
+        <EditUser
+          userId={userId}
+          onClose={() => setIsEditModalOpen(false)}
+          onUpdate={handleUpdate}
+        />
+      )}
 
       <div className="createPost">
         <div className="mt-20 max-w-7xl mx-auto bg-white/30 backdrop-blur-md rounded-2xl p-6 md:p-12 shadow-lg">

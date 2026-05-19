@@ -9,6 +9,7 @@ import Profile from "../pages/Profile";
 import About from "../pages/About";
 import Community from "../pages/Community";
 import Contacts from "../pages/Contacts";
+import Resources from "../pages/Resources";
 
 const AppRoute = () => {
   return (
@@ -25,6 +26,7 @@ const AppRoute = () => {
         <Route path="/About" element={<About />} />
         <Route path="/Community" element={<Community />} />
         <Route path="/Contacts" element={<Contacts />} />
+        <Route path="/Resources" element={<Resources />} />
       </Routes>
     </BrowserRouter>
   );

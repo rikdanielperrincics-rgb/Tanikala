@@ -117,7 +117,7 @@ function NavBar() {
           </NavLink>
 
           <NavLink
-            to="/Profile"
+            to={localStorage.getItem("token") ? "/profile" : "/signup"}
             className={({ isActive }) =>
               `
               px-4 py-2 rounded-full transition-all duration-300
@@ -129,22 +129,9 @@ function NavBar() {
               `
             }
           >
-            Account
+            {localStorage.getItem("token") ? "Profile" : "Login"}
           </NavLink>
 
-
-          {/* <select
-            value={value}
-            onChange={(e) => {
-              setValue(e.target.value);
-              navigate(e.target.value);
-            }}
-            className="px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm text-[#6B4F4F] cursor-pointer"
-          >
-            <option value="/">Home</option>
-            <option value="/SignIn">Sign In</option>
-            <option value="/Profile">Profile (To be Deleted)</option>
-          </select> */}
         </div>
       </nav>
     </div>

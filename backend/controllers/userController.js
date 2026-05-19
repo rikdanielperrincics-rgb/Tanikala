@@ -29,13 +29,12 @@ export const create = async (req, res) => {
 
 export const login = async (req, res) => {
     try {
-        const { name, password } = req.body;
-        const user = await User.findOne({ name });
-        const userMail = await User.findOne({ email: name });
-        if (!user && !userMail) {
+        const { email, password } = req.body;
+        const userMail = await User.findOne({ email});
+        if (!userMail) {
             return res.status(404).json({ error: 'User not found' });
         }
-        const actualUser = user || userMail;
+        const actualUser =  userMail;
         if (actualUser.password !== password) {
             return res.status(401).json({ error: 'Invalid password' });
         }
