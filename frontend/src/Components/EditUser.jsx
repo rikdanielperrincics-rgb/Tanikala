@@ -9,8 +9,12 @@ function EditUser({ userId, onClose, onUpdate }) {
     email: "",
     password: "",
   });
+  
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [errorPassword, setErrorPassword] = useState("");
+  const [errorConfirmPassword, setErrorConfirmPassword] = useState("");
 
   useEffect(() => {
     async function fetchUserData() {
@@ -34,6 +38,11 @@ function EditUser({ userId, onClose, onUpdate }) {
     setUserData((prev) => ({ ...prev, [name]: value }));
     if (name === "password") {
       validate(value);
+      if (confirmPassword && value !== confirmPassword) {
+          setErrorConfirmPassword("Passwords do not match.");
+      } else {
+          setErrorConfirmPassword("");
+      }
     }
   }
 
@@ -78,6 +87,13 @@ function EditUser({ userId, onClose, onUpdate }) {
         toast.error("Please fix password errors before submitting.");
         return;
       }
+      
+      if (userData.password !== confirmPassword) {
+        toast.error("Passwords do not match.");
+        setErrorConfirmPassword("Passwords do not match.");
+        return;
+      }
+
       const response = await fetch(
         `http://localhost:8000/api/update/user/${userId}`,
         {
@@ -104,22 +120,33 @@ function EditUser({ userId, onClose, onUpdate }) {
   }
 
   return (
-    <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-      <div className="bg-white/80 backdrop-blur-xl p-6 md:p-10 max-w-md w-full mx-auto rounded-[30px] shadow-2xl relative border border-white/20">
-        <button
-          onClick={onClose}
-          className="absolute top-6 right-6 text-[#4B3573] hover:text-purple-800 transition-colors text-2xl font-bold"
-        >
-          &times;
-        </button>
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#4B3573]/20 backdrop-blur-sm transition-all duration-300 p-4">
+      
+      {/* Modal Card */}
+      <div className="bg-white rounded-[2rem] shadow-2xl w-full max-w-md p-8 mx-4 flex flex-col gap-6 transform scale-100 transition-all border border-purple-100">
         
-        <h2 className="text-3xl font-bold mb-8 text-[#4B3573] text-center">
-          Edit Profile
-        </h2>
+        {/* Header / Title Section */}
+        <div className="flex justify-between items-center border-b border-gray-100 pb-2">
+          <h2 className="text-[2rem] font-extrabold text-[#4B3573] tracking-tight">
+            Edit Profile
+          </h2>
+          <button
+            type="button"
+            onClick={onClose}
+            className="text-gray-400 hover:text-red-400 transition-colors p-1.5 rounded-full hover:bg-gray-50"
+          >
+            <svg className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
 
-        <form onSubmit={updateUser} className="space-y-6">
-          <div>
-            <label className="block text-sm font-bold text-[#5E4A7E] mb-2 px-1">
+        {/* Edit User Form */}
+        <form onSubmit={updateUser} className="flex flex-col gap-5">
+          
+          {/* Input: Name */}
+          <div className="flex flex-col w-full">
+            <label className="text-[#766a94] font-bold mb-1.5 text-[0.95rem] tracking-wide block">
               Name
             </label>
             <input
@@ -128,13 +155,14 @@ function EditUser({ userId, onClose, onUpdate }) {
               placeholder="Your Name"
               value={userData.name || ""}
               onChange={handleChange}
-              className="w-full bg-white/50 border-[1.5px] border-[#d8d8d8] p-3 rounded-2xl focus:border-[#a78bda] focus:ring-2 focus:ring-[#a78bda]/20 outline-none transition-all placeholder:text-gray-400"
+              className="w-full px-5 py-3 text-[0.95rem] text-[#5E4A7E] border-2 border-purple-500/10 rounded-2xl focus:border-[#C7B3EE] focus:ring-4 focus:ring-purple-100 outline-none transition-all bg-[#faf8fc] font-medium placeholder-purple-300/70"
               required
             />
           </div>
 
-          <div>
-            <label className="block text-sm font-bold text-[#5E4A7E] mb-2 px-1">
+          {/* Input: Email */}
+          <div className="flex flex-col w-full">
+            <label className="text-[#766a94] font-bold mb-1.5 text-[0.95rem] tracking-wide block">
               Email
             </label>
             <input
@@ -143,54 +171,99 @@ function EditUser({ userId, onClose, onUpdate }) {
               placeholder="Your Email"
               value={userData.email || ""}
               onChange={handleChange}
-              className="w-full bg-white/50 border-[1.5px] border-[#d8d8d8] p-3 rounded-2xl focus:border-[#a78bda] focus:ring-2 focus:ring-[#a78bda]/20 outline-none transition-all placeholder:text-gray-400"
+              className="w-full px-5 py-3 text-[0.95rem] text-[#5E4A7E] border-2 border-purple-500/10 rounded-2xl outline-none bg-gray-100/60 font-medium cursor-not-allowed opacity-70"
               required
               disabled
             />
           </div>
 
-          <div>
-            <label className="block text-sm font-bold text-[#5E4A7E] mb-2 px-1">
-            Password
-          </label>
-
-          <div className="relative">
-            <input
-              type={showPassword ? "text" : "password"}
-              name="password"
-              placeholder="New Password"
-              value={userData.password || ""}
-              onChange={handleChange}
-              className="w-full bg-white/50 border-[1.5px] border-[#d8d8d8] p-3 pr-12 rounded-2xl focus:border-[#a78bda] focus:ring-2 focus:ring-[#a78bda]/20 outline-none transition-all placeholder:text-gray-400"
-              required
-            />
-
-            <button
-              type="button"
-              onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center"
-            >
-              <EyeIcon show={showPassword} />
-            </button>
+          {/* Input: Password */}
+          <div className="flex flex-col w-full">
+            <label className="text-[#766a94] font-bold mb-1.5 text-[0.95rem] tracking-wide block">
+              Password
+            </label>
+            <div className="relative w-full">
+              <input
+                type={showPassword ? "text" : "password"}
+                name="password"
+                placeholder="New Password"
+                value={userData.password || ""}
+                onChange={handleChange}
+                className="w-full px-5 py-3 pr-12 text-[0.95rem] text-[#5E4A7E] border-2 border-purple-500/10 rounded-2xl focus:border-[#C7B3EE] focus:ring-4 focus:ring-purple-100 outline-none transition-all bg-[#faf8fc] font-medium placeholder-purple-300/70"
+                required
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center text-purple-400 hover:text-[#4B3573] transition-colors"
+              >
+                <EyeIcon show={showPassword} />
+              </button>
+            </div>
+            {errorPassword && (
+              <p className="whitespace-pre-line text-red-500 text-sm mt-1.5 px-1 leading-relaxed">
+                {errorPassword}
+              </p>
+            )}
           </div>
-                <p className="whitespace-pre-line text-red-500 text-sm">{errorPassword}</p>
+
+          {/* Input: Confirm Password */}
+          <div className="flex flex-col w-full">
+            <label className="text-[#766a94] font-bold mb-1.5 text-[0.95rem] tracking-wide block">
+              Confirm Password
+            </label>
+            <div className="relative w-full">
+              <input
+                type={showConfirmPassword ? "text" : "password"}
+                name="confirmPassword"
+                placeholder="Confirm New Password"
+                value={confirmPassword}
+                onChange={(e) => {
+                  setConfirmPassword(e.target.value);
+                  if (e.target.value !== userData.password) {
+                    setErrorConfirmPassword("Passwords do not match.");
+                  } else {
+                    setErrorConfirmPassword("");
+                  }
+                }}
+                className="w-full px-5 py-3 pr-12 text-[0.95rem] text-[#5E4A7E] border-2 border-purple-500/10 rounded-2xl focus:border-[#C7B3EE] focus:ring-4 focus:ring-purple-100 outline-none transition-all bg-[#faf8fc] font-medium placeholder-purple-300/70"
+                required
+              />
+              <button
+                type="button"
+                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center text-purple-400 hover:text-[#4B3573] transition-colors"
+              >
+                <EyeIcon show={showConfirmPassword} />
+              </button>
+            </div>
+            {errorConfirmPassword && (
+              <p className="whitespace-pre-line text-red-500 text-sm mt-1.5 px-1 leading-relaxed">
+                {errorConfirmPassword}
+              </p>
+            )}
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 pt-4">
-            <button
-              type="submit"
-              className="flex-1 bg-[#7B8DEB] text-white font-bold py-3 px-6 rounded-full shadow-lg hover:bg-[#6a7cd9] hover:scale-[1.02] active:scale-95 transition-all"
-            >
-              Save Changes
-            </button>
+          {/* Actions Footer */}
+          <div className="flex justify-end items-center gap-4 mt-3 pt-4 border-t border-gray-100">
             <button
               type="button"
               onClick={onClose}
-              className="flex-1 bg-[#F5C0CB] text-[#7B8DEB] font-bold py-3 px-6 rounded-full shadow-lg hover:bg-[#efabbb] hover:scale-[1.02] active:scale-95 transition-all"
+              className="px-6 py-2.5 rounded-full font-bold text-gray-400 hover:text-gray-600 hover:bg-gray-50 transition-colors"
             >
               Cancel
             </button>
+            <button
+              type="submit"
+              className="bg-[#766a94] hover:bg-[#61567d] text-white px-8 py-2.5 rounded-full font-bold transition-all shadow-md hover:shadow-lg flex items-center gap-2"
+            >
+              <span>Save Changes</span>
+              <svg className="w-5 h-5 fill-none stroke-white" strokeWidth="2.5" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+              </svg>
+            </button>
           </div>
+
         </form>
       </div>
     </div>
