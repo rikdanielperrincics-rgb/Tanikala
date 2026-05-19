@@ -33,9 +33,9 @@ export const googleAuth = async (req, res) => {
 
         return res.status(200).json({
             success: true,
+            isNewUser: false,
             token,
-            user,
-            isNewUser
+            user
         });
 
     } catch (error) {

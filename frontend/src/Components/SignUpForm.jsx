@@ -4,6 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; 
 import axios from "axios";
 import {jwtDecode} from "jwt-decode";
+import EyeIcon from "./EyeIcon";
 
 function SignUpForm() {
     const [email, setEmail] = useState("");
@@ -26,34 +27,6 @@ function SignUpForm() {
             toast.info("Email pre-filled from Google authentication. Please complete the signup form.");
         }
     }, [emailFromQuery]);
-    
-    function EyeIcon({ show }) {
-        return (
-            <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="#bbb"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-    >
-        {show ? (
-        <>
-            <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94" />
-            <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19" />
-            <line x1="1" y1="1" x2="23" y2="23" />
-        </>
-        ) : (
-        <>
-            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-            <circle cx="12" cy="12" r="3" />
-        </>
-        )}
-    </svg>
-    );
-    }
 
     function handleNameChange(e) {
         setName(e.target.value);
