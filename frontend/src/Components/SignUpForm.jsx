@@ -1,11 +1,13 @@
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import validator from "validator";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; 
 import axios from "axios";
+import {jwtDecode} from "jwt-decode";
 
 function SignUpForm() {
     const [email, setEmail] = useState("");
+    const [emailLoaded, setEmailLoaded] = useState(false);
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -15,6 +17,16 @@ function SignUpForm() {
     const [showConfPassword, setShowConfPassword] = useState(false);
     const [passwordMatch, setPasswordMatch] = useState(false);
 
+        const emailFromQuery = new URLSearchParams(window.location.search).get("email");
+
+    useEffect(() => {
+        if (emailFromQuery) {
+            setEmail(emailFromQuery);
+            setEmailLoaded(true);
+            toast.info("Email pre-filled from Google authentication. Please complete the signup form.");
+        }
+    }, [emailFromQuery]);
+    
     function EyeIcon({ show }) {
         return (
             <svg

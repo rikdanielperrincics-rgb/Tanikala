@@ -17,19 +17,16 @@ function GoogleButton({ text }) {
                 }
             );
 
-            const res = await axios.post(
-                "http://localhost:8000/api/auth/google",
-                {
-                    email: userInfo.data.email,
-                    name: userInfo.data.name,
-                    picture: userInfo.data.picture,
-                    googleId: userInfo.data.sub
-                }
-            );
+        const res = await axios.post("http://localhost:8000/api/auth/google", {
+            email: userInfo.data.email
+        });
 
-            console.log(res.data);
-
+        if (res.data.isNewUser) {
+            window.location.href = `/signup?email=${res.data.email}`;
+        } else {
             localStorage.setItem("token", res.data.token);
+            window.location.href = "/";
+        }
 
         } catch (error) {
             console.log(error);

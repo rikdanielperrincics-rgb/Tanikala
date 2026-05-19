@@ -1,4 +1,5 @@
 import User from "../models/userModel.js";
+import jwt from "jsonwebtoken";
 
 export const googleAuth = async (req, res) => {
     try {
@@ -13,14 +14,19 @@ export const googleAuth = async (req, res) => {
 
         let user = await User.findOne({ email });
 
-        let isNewUser = false;
-
         if (!user) {
-            isNewUser = true;
+            return res.status(200).json({
+                success: true,
+                isNewUser: true,
+                email
+            });
         }
 
         const token = jwt.sign(
-            { id: user._id },
+            {
+                id: user._id,
+                email: user.email
+            },
             process.env.JWT_SECRET,
             { expiresIn: "7d" }
         );
@@ -33,10 +39,10 @@ export const googleAuth = async (req, res) => {
         });
 
     } catch (error) {
-        console.log(error);
-        res.status(500).json({
+        console.log("Google Auth Error:", error);
+        return res.status(500).json({
             success: false,
-            message: "Google Login Failed"
+            message: error.message
         });
     }
-}
+};
