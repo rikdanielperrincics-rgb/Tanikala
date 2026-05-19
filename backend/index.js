@@ -5,6 +5,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import authRoute from "./routes/authRoute.js"
 import userRoute from "./routes/userRoute.js"
+import postRoute from "./routes/postRoute.js"
 
 const app = express();
 dotenv.config();
@@ -17,6 +18,7 @@ app.use(bodyParser.json());
 
 app.use("/api/auth", authRoute);
 app.use("/api", userRoute);
+app.use("/api", postRoute);
 
 const PORT = process.env.PORT || 7000;
 const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017';

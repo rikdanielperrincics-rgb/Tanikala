@@ -1,4 +1,5 @@
 import User from "../models/userModel.js";
+import jwt from "jsonwebtoken";
 
 export const create = async (req, res) => {
     try {
@@ -30,19 +31,40 @@ export const create = async (req, res) => {
 export const login = async (req, res) => {
     try {
         const { email, password } = req.body;
-        const userMail = await User.findOne({ email});
-        if (!userMail) {
-            return res.status(404).json({ error: 'User not found' });
+
+        const user = await User.findOne({ email });
+
+        if (!user) {
+        return res.status(404).json({ error: "User not found" });
         }
-        const actualUser =  userMail;
-        if (actualUser.password !== password) {
-            return res.status(401).json({ error: 'Invalid password' });
+
+        if (user.password !== password) {
+        return res.status(401).json({ error: "Invalid password" });
         }
-        res.status(200).json({ message: 'Login successful', user: actualUser });
+
+        const token = jwt.sign(
+        {
+            id: user._id,
+            email: user.email,
+            name: user.name
+        },
+        process.env.JWT_SECRET,
+        { expiresIn: "7d" }
+        );
+
+        res.status(200).json({
+        message: "Login successful",
+        token,
+        user: {
+            id: user._id,
+            email: user.email,
+            name: user.name
+        }
+        });
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
-}
+};
 
 export const getAllUsers = async (req, res) => {
     try {
