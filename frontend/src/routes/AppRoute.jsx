@@ -8,6 +8,7 @@ import LoginTemp from "../TempPagesForFunctionality/LoginTemp";
 import Profile from "../pages/Profile";
 import About from "../pages/About";
 import Community from "../pages/Community";
+import Contacts from "../pages/Contacts";
 
 const AppRoute = () => {
   return (
@@ -23,6 +24,7 @@ const AppRoute = () => {
         <Route path="/Profile" element={<Profile />} />
         <Route path="/About" element={<About />} />
         <Route path="/Community" element={<Community />} />
+        <Route path="/Contacts" element={<Contacts />} />
       </Routes>
     </BrowserRouter>
   );

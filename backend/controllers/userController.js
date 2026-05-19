@@ -9,6 +9,13 @@ export const create = async (req, res) => {
                 error: "User with this email already exists"
             });
         }
+        const { name } = req.body;
+        const nameExists = await User.findOne({ name });
+        if (nameExists) {
+            return res.status(400).json({
+                error: "User with this name already exists"
+            });
+        }
         const newUser = new User(req.body);
         const savedUser = await newUser.save();
         res.status(201).json(savedUser);
