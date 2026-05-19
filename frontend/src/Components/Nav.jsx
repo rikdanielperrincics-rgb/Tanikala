@@ -6,7 +6,7 @@ function Nav({ link, name } ) {
                 to={link}
                 className={({ isActive }) =>
                 `
-                px-4 py-2 rounded-full transition-all duration-300
+                px-4 py-2 rounded-full transition-all duration-300 font-semibold
                 ${
                     isActive
                     ? "text-[1.2rem] bg-[#E9BFD7] backdrop-blur-md text-white shadow-sm"
