@@ -7,17 +7,35 @@ import RecentActivity from "../Components/RecentActivity";
 function Profile() {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [userID, setUserID] = useState(null);
+  const [userEmail, setUserEmail] = useState("")
+  const [posts, setPosts] = useState([])
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    async function getPosts(params) {
+          try {
+      const response = await fetch("http://localhost:8000/api/posts");
+      if (!response.ok) {
+        return;
+      }
+      const data = await response.json();
+      setPosts(data);
+    } catch (error) {
+    }
+    } 
 
+    const token = localStorage.getItem("token");
+        const email = token        ? JSON.parse(atob(token.split(".")[1])).email
+        : null;
+        setUserEmail(email);  
     const id = token
       ? JSON.parse(atob(token.split(".")[1])).id
       : null;
-
+    getPosts();
     setUserID(id);
-    console.log("User ID from token:", id);
+    console.log(posts)
+    console.log(userEmail)
   }, []);
+
   const handleUpdate = () => {
     console.log("Profile updated!");
   };
@@ -35,7 +53,7 @@ function Profile() {
         />
       )}
 
-      <RecentActivity />
+      <RecentActivity posts={posts} userEmail={userEmail}/>
     </div>
   );
 }

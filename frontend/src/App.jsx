@@ -66,7 +66,7 @@ export default function App() {
 
           <div className="flex flex-col sm:flex-row gap-5 justify-center lg:justify-start transform scale-105 sm:scale-110 origin-center lg:origin-left mt-4">
             <RedirectSmall text="Join our Community" color="bg-[#7B8DEB]" textColor="text-white" to="/community" />
-            <RedirectSmall text="Explore the Forum" color="bg-[#F5C0CB]" textColor="text-[#7B8DEB]" to="/forum" />
+            <RedirectSmall text="Explore the Resources" color="bg-[#F5C0CB]" textColor="text-[#7B8DEB]" to="/resources" />
           </div>
 
         </div>
