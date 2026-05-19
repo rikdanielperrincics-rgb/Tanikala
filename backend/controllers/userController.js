@@ -74,16 +74,36 @@ export const getUserByID = async (req, res) => {
 export const update = async (req, res) => {
     try {
         const { id } = req.params;
-        const userData = await User.findByIdAndUpdate(id, req.body, { new: true });
-        if (!userData) {
-            return res.status(404).json({ error: 'User not found' });
+        const { name } = req.body;
+
+        if (name) {
+        const existingUser = await User.findOne({
+            name,
+            _id: { $ne: id } 
+        });
+
+        if (existingUser) {
+            return res.status(400).json({
+            error: "Name already in use by another user",
+            });
         }
+        }
+
+        const userData = await User.findByIdAndUpdate(
+        id,
+        req.body,
+        { new: true, runValidators: true }
+        );
+
+        if (!userData) {
+        return res.status(404).json({ error: "User not found" });
+        }
+
         res.status(200).json(userData);
-    }
-    catch (err) {
+    } catch (err) {
         res.status(500).json({ error: err.message });
     }
-}
+};
 
 export const deleteUser = async (req, res) => {
     try {

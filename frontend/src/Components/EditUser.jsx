@@ -1,4 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
+import EyeIcon from "./EyeIcon";
+import { toast } from "react-toastify";
+import validator from "validator";
 
 function EditUser({ userId, onClose, onUpdate }) {
   const [userData, setUserData] = useState({
@@ -6,12 +9,14 @@ function EditUser({ userId, onClose, onUpdate }) {
     email: "",
     password: "",
   });
+  const [showPassword, setShowPassword] = useState(false);
+  const [errorPassword, setErrorPassword] = useState("");
 
   useEffect(() => {
     async function fetchUserData() {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/user/getone/${userId}`,
+          `http://localhost:8000/api/user/${userId}`,
         );
         const data = await response.json();
         setUserData(data);
@@ -27,13 +32,55 @@ function EditUser({ userId, onClose, onUpdate }) {
   function handleChange(e) {
     const { name, value } = e.target;
     setUserData((prev) => ({ ...prev, [name]: value }));
+    if (name === "password") {
+      validate(value);
+    }
   }
+
+  function validate(value) {
+  
+          if (validator.isStrongPassword(value, {
+              minLength: 8, minLowercase: 1,
+              minUppercase: 1, minNumbers: 1, minSymbols: 1
+          })) {
+              setErrorPassword('');
+              return true;
+          } else {
+              if (value.length === 0) {
+                  setErrorPassword("");
+              } else {
+                  const errorMessages = [];
+                  if (value.length < 8) {
+                      errorMessages.push("Password must be at least 8 characters long.");
+                  }
+                  if (!/[A-Z]/.test(value)) {
+                      errorMessages.push("Password must include at least one uppercase letter.");
+                  }
+                  if (!/[a-z]/.test(value)) {
+                      errorMessages.push("Password must include at least one lowercase letter.");
+                  }
+                  if (!/[0-9]/.test(value)) {
+                      errorMessages.push("Password must include at least one number.");
+                  }
+                  if (!/[^A-Za-z0-9]/.test(value)) {
+                      errorMessages.push("Password must include at least one symbol.");
+                  }
+                  setErrorPassword(errorMessages.join("\n"));  
+              }
+              return false;
+          }
+          console.log("Password validation result:", errorPassword);
+      }
 
   async function updateUser(e) {
     e.preventDefault();
     try {
+      if (userData.password && !validate(userData.password)) {
+        toast.error("Please fix password errors before submitting.");
+        return;
+      }
       const response = await fetch(
-        `http://localhost:5000/api/user/update/${userId}`,
+        `http://localhost:8000/api/update/user/${userId}`,
         {
           method: "PUT",
           headers: {
@@ -44,15 +91,16 @@ function EditUser({ userId, onClose, onUpdate }) {
       );
 
       if (response.ok) {
-        alert("User updated successfully!");
+        toast.success("User updated successfully!");
         onUpdate();
         onClose();
       } else {
-        alert("Error updating user.");
+          const errorData = await response.json();
+          toast.error("Error updating user: " + errorData.error);
       }
     } catch (error) {
       console.error("Error updating user:", error);
-      alert("Error updating user.");
+      toast.error("Error updating user.");
     }
   }
 
@@ -98,22 +146,35 @@ function EditUser({ userId, onClose, onUpdate }) {
               onChange={handleChange}
               className="w-full bg-white/50 border-[1.5px] border-[#d8d8d8] p-3 rounded-2xl focus:border-[#a78bda] focus:ring-2 focus:ring-[#a78bda]/20 outline-none transition-all placeholder:text-gray-400"
               required
+              disabled
             />
           </div>
 
           <div>
             <label className="block text-sm font-bold text-[#5E4A7E] mb-2 px-1">
-              Password
-            </label>
+            Password
+          </label>
+
+          <div className="relative">
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               name="password"
               placeholder="New Password"
               value={userData.password || ""}
               onChange={handleChange}
-              className="w-full bg-white/50 border-[1.5px] border-[#d8d8d8] p-3 rounded-2xl focus:border-[#a78bda] focus:ring-2 focus:ring-[#a78bda]/20 outline-none transition-all placeholder:text-gray-400"
+              className="w-full bg-white/50 border-[1.5px] border-[#d8d8d8] p-3 pr-12 rounded-2xl focus:border-[#a78bda] focus:ring-2 focus:ring-[#a78bda]/20 outline-none transition-all placeholder:text-gray-400"
               required
             />
+
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center"
+            >
+              <EyeIcon show={showPassword} />
+            </button>
+          </div>
+                <p className="whitespace-pre-line text-red-500 text-sm">{errorPassword}</p>
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 pt-4">
