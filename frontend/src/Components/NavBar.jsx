@@ -22,6 +22,16 @@ const [isLoggedIn, setIsLoggedIn] = useState(
     },
   ];
 
+  // Matched background color combinations derived from your community tags
+  const navColors = [
+    { active: "bg-[#E9BFD7]", hover: "hover:bg-[#E9BFD7]" },
+    { active: "bg-[#E2BADB]", hover: "hover:bg-[#E2BADB]" },
+    { active: "bg-[#DDB7E1]", hover: "hover:bg-[#DDB7E1]" },
+    { active: "bg-[#D1B3E9]", hover: "hover:bg-[#D1B3E9]" },
+    { active: "bg-[#C9B3EC]", hover: "hover:bg-[#C9B3EC]" }, 
+    { active: "bg-[#B9B3F4]", hover: "hover:bg-[#B9B3F4]" },
+  ];
+
   useEffect(() => {
     setIsLoggedIn(!!localStorage.getItem("token"));
   }, [location.pathname]);
@@ -39,9 +49,18 @@ const [isLoggedIn, setIsLoggedIn] = useState(
 
         <div className="flex flex-wrap items-center justify-center md:justify-end gap-2 sm:gap-4 text-[#4B3573]/80 font-medium">
           
-          {navcontents.map((item, index) => (
-            <Nav key={index} link={item.link} name={item.name} />
-          ))}
+          {navcontents.map((item, index) => {
+            const colors = navColors[index % navColors.length];
+            return (
+              <Nav 
+                key={index} 
+                link={item.link} 
+                name={item.name} 
+                activeColor={colors.active}
+                hoverColor={colors.hover}
+              />
+            );
+          })}
 
         </div>
       </nav>
