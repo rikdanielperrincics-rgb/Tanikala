@@ -1,8 +1,12 @@
-function RedirectSmall({ text, color, textColor }) {
+import {Link} from "react-router-dom";
+function RedirectSmall({ text, color, textColor, to }) {
     return (
-        <button className={`${color} ${textColor} px-8 py-4 rounded-3xl font-semibold shadow-lg transition hover:scale-105`}>
-            {text}
-        </button>
+        <Link
+                to={to}
+                className={`${color} ${textColor} px-8 py-4 rounded-3xl font-semibold shadow-lg transition hover:scale-105`}
+            >
+                {text}
+        </Link>
     )
 }
 

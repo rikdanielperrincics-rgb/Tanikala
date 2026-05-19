@@ -82,7 +82,6 @@ function SignUpForm() {
             }
             return false;
         }
-        console.log("Password validation result:", errorPassword);
     }
 
     function handleConfPasswordChange(e) {
@@ -102,17 +101,14 @@ function SignUpForm() {
         const isPasswordValid = validate(password);
 
         if (isEmailValid && isPasswordValid && passwordMatch) {            
-            console.log("Signing up with:", email, password);
             axios.post("http://localhost:8000/api/user", { name, email, password })
                 .then(response => {
-                    console.log("Signup response:", response.data);
                     toast.success("Signup successful!");
                     setTimeout(() => {
                         window.location.href = "/login";
                     }, 2000);
                 })
                 .catch(error => {
-                    console.error("Signup error:", error.response ? error.response.data : error.message);
                     toast.error("Signup failed. Please try again. \n " + (error.response ? error.response.data.error : error.message));
                 });
         } else {

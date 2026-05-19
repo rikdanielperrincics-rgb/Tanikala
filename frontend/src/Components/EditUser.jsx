@@ -69,7 +69,6 @@ function EditUser({ userId, onClose, onUpdate }) {
               }
               return false;
           }
-          console.log("Password validation result:", errorPassword);
       }
 
   async function updateUser(e) {
