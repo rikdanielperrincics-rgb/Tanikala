@@ -1,5 +1,6 @@
 import { GoogleLogin } from '@react-oauth/google'
 import axios from 'axios'
+import { toast } from 'react-toastify'
 
 function GoogleLoginButton() {
 
@@ -13,19 +14,18 @@ function GoogleLoginButton() {
                 }
             )
 
-            console.log(res.data)
 
             localStorage.setItem("token", res.data.token)
 
         } catch (error) {
-            console.log(error)
+            toast.error("Google login failed. Please try again.");
         }
     }
 
     return (
         <GoogleLogin
             onSuccess={handleSuccess}
-            onError={() => console.log("Login Failed")}
+            onError={() => toast.error("Google login failed. Please try again.")}
         />
     )
 }

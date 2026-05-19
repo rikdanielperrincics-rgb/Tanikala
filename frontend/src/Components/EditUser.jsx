@@ -47,37 +47,38 @@ function EditUser({ userId, onClose, onUpdate }) {
   }
 
   function validate(value) {
-      if (validator.isStrongPassword(value, {
-          minLength: 8, minLowercase: 1,
-          minUppercase: 1, minNumbers: 1, minSymbols: 1
-      })) {
-          setErrorPassword('');
-          return true;
-      } else {
-          if (value.length === 0) {
-              setErrorPassword("");
+  
+          if (validator.isStrongPassword(value, {
+              minLength: 8, minLowercase: 1,
+              minUppercase: 1, minNumbers: 1, minSymbols: 1
+          })) {
+              setErrorPassword('');
+              return true;
           } else {
-              const errorMessages = [];
-              if (value.length < 8) {
-                  errorMessages.push("Password must be at least 8 characters long.");
+              if (value.length === 0) {
+                  setErrorPassword("");
+              } else {
+                  const errorMessages = [];
+                  if (value.length < 8) {
+                      errorMessages.push("Password must be at least 8 characters long.");
+                  }
+                  if (!/[A-Z]/.test(value)) {
+                      errorMessages.push("Password must include at least one uppercase letter.");
+                  }
+                  if (!/[a-z]/.test(value)) {
+                      errorMessages.push("Password must include at least one lowercase letter.");
+                  }
+                  if (!/[0-9]/.test(value)) {
+                      errorMessages.push("Password must include at least one number.");
+                  }
+                  if (!/[^A-Za-z0-9]/.test(value)) {
+                      errorMessages.push("Password must include at least one symbol.");
+                  }
+                  setErrorPassword(errorMessages.join("\n"));  
               }
-              if (!/[A-Z]/.test(value)) {
-                  errorMessages.push("Password must include at least one uppercase letter.");
-              }
-              if (!/[a-z]/.test(value)) {
-                  errorMessages.push("Password must include at least one lowercase letter.");
-              }
-              if (!/[0-9]/.test(value)) {
-                  errorMessages.push("Password must include at least one number.");
-              }
-              if (!/[^A-Za-z0-9]/.test(value)) {
-                  errorMessages.push("Password must include at least one symbol.");
-              }
-              setErrorPassword(errorMessages.join("\n"));  
+              return false;
           }
-          return false;
       }
-  }
 
   async function updateUser(e) {
     e.preventDefault();

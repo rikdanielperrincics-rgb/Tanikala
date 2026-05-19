@@ -18,7 +18,6 @@ function LoginForm() {
 
     function handleSubmit(e) {
         e.preventDefault();
-        console.log("Logging in with:", email, password);
         axios.post("http://localhost:8000/api/login", { email, password })
             .then(response => {
                 toast.success("Login successful!");

@@ -4,16 +4,13 @@ import { Link } from "react-router-dom";
 import NavBar from './Components/NavBar';
 import RedirectSmall from './Components/RedirectSmall';
 import peaceImg from "./assets/peace.jpg";
-
-// Added necessary imports for the resources section
-import ResourceCard from "./Components/ResourceCard";
 import Empathy from "./assets/Empathy.png";
 import Accessibility from "./assets/Accessibility.png";
 import CommunityIcon from "./assets/Community.png";
 import Therapist from "./assets/therapist.png";
+import HomeResources from "./Components/HomeResources";
 
 export default function App() {
-  // Full curated resources list including Professional Counseling
   const featuredResources = [
     {
       title: "Understanding Anxiety",
@@ -54,10 +51,8 @@ export default function App() {
 
       <NavBar />
 
-      {/* HERO - Added mt-12 sm:mt-20 md:mt-28 to push it down from the NavBar */}
       <main className="max-w-7xl mx-auto mt-12 sm:mt-20 md:mt-28 flex flex-col-reverse lg:flex-row items-center justify-between gap-12">
 
-        {/* TEXT */}
         <div className="max-w-xl text-center lg:text-left">
 
           <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold text-[#4B3573] leading-tight mb-6">
@@ -70,13 +65,12 @@ export default function App() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-5 justify-center lg:justify-start transform scale-105 sm:scale-110 origin-center lg:origin-left mt-4">
-            <RedirectSmall text="Join our Community" color="bg-[#7B8DEB]" textColor="text-white" />
-            <RedirectSmall text="Explore the Forum" color="bg-[#F5C0CB]" textColor="text-[#7B8DEB]" />
+            <RedirectSmall text="Join our Community" color="bg-[#7B8DEB]" textColor="text-white" to="/community" />
+            <RedirectSmall text="Explore the Forum" color="bg-[#F5C0CB]" textColor="text-[#7B8DEB]" to="/forum" />
           </div>
 
         </div>
 
-        {/* IMAGE */}
         <div className="relative w-full max-w-[300px] sm:max-w-[400px] lg:max-w-[500px] aspect-square rounded-[40px] md:rounded-[60px] overflow-hidden shadow-2xl">
 
           <img
@@ -86,35 +80,9 @@ export default function App() {
           />
 
         </div>
-
+      
       </main>
-
-      {/* --- ADDED FEATURED RESOURCES SECTION --- */}
-      <section className="w-full mt-24 pt-16 border-t border-white/20">
-        <div className="max-w-7xl mx-auto">
-          
-          {/* Section Header */}
-          <div className="mb-10 text-center lg:text-left">
-            <span className="text-xs font-black uppercase tracking-widest text-[#DD6CB1] block mb-2">
-              Explore Our Library
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-black text-[#512B7C] tracking-tight">
-              Recommended Wellness Resources
-            </h2>
-            <p className="text-[#584A6A] mt-2 max-w-xl text-base font-medium mx-auto lg:mx-0">
-              Carefully curated guides, tools, and articles to support you on your mental health journey.
-            </p>
-          </div>
-
-          {/* Resources Cards Grid - Fits 4 items perfectly */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {featuredResources.map((resource, index) => (
-              <ResourceCard key={index} {...resource} />
-            ))}
-          </div>
-
-        </div>
-      </section>
+      <HomeResources featuredResources={featuredResources}/>
 
     </div>
   );
