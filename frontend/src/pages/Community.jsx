@@ -23,7 +23,12 @@ function Community() {
         return;
       }
       const data = await response.json();
-      setPosts(data);
+
+      const sortedPosts = data.sort(
+        (a, b) => new Date(b.date) - new Date(a.date)
+      );
+
+      setPosts(sortedPosts);
     } catch (error) {
     }
   };

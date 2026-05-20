@@ -25,7 +25,7 @@ function CommunityPosts({
     return (
             <div className="col-span-12 md:col-span-8 flex flex-col bg-white overflow-y-auto">
             
-            {posts.map((post) => (
+            {posts.length ? posts.map((post) => (
                 <CommunityPost 
                     key={post._id} 
                     post={post} 
@@ -39,7 +39,12 @@ function CommunityPosts({
                     refreshPosts={refreshPosts}
                     setSelectedPostForComments={setSelectedPostForComments}
                 />
-            ))}
+            )):
+            <p className="text-[2rem] text-gray-400 font-light tracking-wide text-center selection:bg-purple-100 justify-center">
+                Hmm.. no one's here yet...
+            </p>
+                
+            }
 
         </div>
     )

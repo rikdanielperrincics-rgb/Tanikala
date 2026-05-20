@@ -3,7 +3,7 @@ import EyeIcon from "./EyeIcon";
 import { toast } from "react-toastify";
 import validator from "validator";
 
-function EditUser({ userId, onClose, onUpdate }) {
+function EditUser({ userId, onClose }) {
   const [userData, setUserData] = useState({
     name: "",
     email: "",
@@ -107,7 +107,6 @@ function EditUser({ userId, onClose, onUpdate }) {
 
       if (response.ok) {
         toast.success("User updated successfully!");
-        onUpdate();
         onClose();
       } else {
           const errorData = await response.json();

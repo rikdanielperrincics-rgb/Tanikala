@@ -130,7 +130,7 @@ export const addComment = async (req, res) => {
         author,
         date: new Date().toLocaleString(),
         content,
-        likedBy: 0
+        likedBy: []
         };
 
         post.commentsList.push(newComment);

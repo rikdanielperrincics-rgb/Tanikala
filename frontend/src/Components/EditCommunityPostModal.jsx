@@ -83,6 +83,7 @@ function EditCommunityPostModal({ tags, tagBgColors, setIsEditModalOpen, editing
                     value={editingPost.title || ""}
                     onChange={(e) => setEditingPost({...editingPost, title: e.target.value})}
                     className="w-full text-[1.4rem] font-bold text-[#766a94] border-b-2 border-purple-100 focus:border-[#C7B3EE] outline-none pb-2 placeholder-purple-200/70 transition-colors bg-transparent"
+                    maxLength={64}
                 />
                 </div>
 
@@ -93,6 +94,7 @@ function EditCommunityPostModal({ tags, tagBgColors, setIsEditModalOpen, editing
                     value={editingPost.content}
                     onChange={(e) => setEditingPost({...editingPost, content: e.target.value})}
                     className="w-full h-44 text-[1rem] text-[#5E4A7E] border-2 border-purple-500/10 rounded-2xl p-5 focus:border-[#C7B3EE] focus:ring-4 focus:ring-purple-100 outline-none resize-none placeholder-purple-300/80 transition-all bg-[#faf8fc]"
+                    maxLength={1024}
                 ></textarea>
                 </div>
 

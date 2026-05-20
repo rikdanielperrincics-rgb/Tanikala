@@ -23,22 +23,18 @@ function Profile() {
     }
     } 
 
-    const token = localStorage.getItem("token");
-        const email = token        ? JSON.parse(atob(token.split(".")[1])).email
+      const token = localStorage.getItem('token');
+        const email = token
+        ? JSON.parse(atob(token.split(".")[1])).email
         : null;
-        setUserEmail(email);  
+        setUserEmail(email);
     const id = token
       ? JSON.parse(atob(token.split(".")[1])).id
       : null;
     getPosts();
     setUserID(id);
-    console.log(posts)
-    console.log(userEmail)
-  }, []);
 
-  const handleUpdate = () => {
-    console.log("Profile updated!");
-  };
+  }, []);
 
   return (
     <div className="min-h-screen mt-[9vh] w-full bg-[linear-gradient(90deg,_#e9bfd6_0%,_#d7b3e6_50%,_#b8b3f4_100%)] px-4 sm:px-6 md:px-12 py-6 md:py-8">
@@ -49,7 +45,6 @@ function Profile() {
         <EditUser
           userId={userID}
           onClose={() => setIsEditModalOpen(false)}
-          onUpdate={handleUpdate}
         />
       )}
 

@@ -90,6 +90,7 @@ function AddCommunityPostModal({ tags, tagBgColors, userEmail, userName, setIsMo
                     value={newPost.title}
                     onChange={(e) => setNewPost({...newPost, title: e.target.value})}
                     className="w-full text-[1.4rem] font-bold text-[#766a94] border-b-2 border-purple-100 focus:border-[#C7B3EE] outline-none pb-2 placeholder-purple-200/70 transition-colors bg-transparent"
+                    maxLength={64}
                 />
                 </div>
 
@@ -100,6 +101,7 @@ function AddCommunityPostModal({ tags, tagBgColors, userEmail, userName, setIsMo
                     value={newPost.content}
                     onChange={(e) => setNewPost({...newPost, content: e.target.value})}
                     className="w-full h-44 text-[1rem] text-[#5E4A7E] border-2 border-purple-500/10 rounded-2xl p-5 focus:border-[#C7B3EE] focus:ring-4 focus:ring-purple-100 outline-none resize-none placeholder-purple-300/80 transition-all bg-[#faf8fc]"
+                    maxLength={1024}
                 ></textarea>
                 </div>
 
